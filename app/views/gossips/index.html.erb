@@ -1,16 +1,15 @@
 <% content_for :title, "Home" %>
 
 <div class="container">
-<div class="p-5 mb-4 mt-4 bg-body-tertiary rounded-3">
-      <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold">Welcome to The Gossip Project</h1>
-        <p class="col-md-8 fs-4">Here you can find all the latest gossip from around town.</p>
-        <%= link_to "Create New Gossip", {controller: "static_pages", action: "home"}, class: "btn btn-primary" %>
-      </div>
+    <div class="p-5 mb-4 mt-4 bg-body-tertiary rounded-3">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">Welcome to The Gossip Project</h1>
+            <p class="col-md-8 fs-4">Here you can find all the latest gossip from around town.</p>
+        </div>
     </div>
 
     <div class="row">
-        <% params[:gossip_array].each do |gossip| %>
+        <% @gossips.each do |gossip| %>
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
                     <div class="card-body">
