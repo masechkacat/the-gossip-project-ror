@@ -1,0 +1,46 @@
+<% content_for :title, "Gossip" %>
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="card">
+      <div class="card-header">
+        <h2><%= params[:gossip].title %></h2>
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <p><%= params[:gossip].content %></p>
+          <footer class="blockquote-footer"> <cite><%= params[:gossip].user.first_name %> <%= params[:gossip].user.last_name %></cite></footer>
+        </blockquote>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <label>
+      <input type="checkbox" name="like" value="1">
+      Like
+      </label>
+    </div>
+
+    <div class="col-md-8">
+      <h3>Comments</h3>
+      <ul class="list-group list-group-flush">
+        <% params[:comments].each do |comment| %>
+          <li class="list-group-item"><%= comment.content %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-6 m-4">
+      <form>
+        <div class="form-group m-2">
+              <label for="comment">Your comment:</label>
+              <textarea class="form-control" rows="3" id="comment"></textarea>
+            </div>
+            <button type="submit m-2" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
+    </div>
+</div>
+</div>
+
+    
+

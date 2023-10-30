@@ -1,9 +1,12 @@
 <% content_for :title, "Home" %>
 
 <div class="container">
-    <div class="jumbotron">
-        <h1>Welcome to The Gossip Project!</h1>
-        <p>Here you can find all the latest gossip from around town.</p>
+<div class="p-5 mb-4 mt-4 bg-body-tertiary rounded-3">
+      <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Welcome to The Gossip Project</h1>
+        <p class="col-md-8 fs-4">Here you can find all the latest gossip from around town.</p>
+        <%= link_to "Create New Gossip", {controller: "static_pages", action: "home"}, class: "btn btn-primary" %>
+      </div>
     </div>
 
     <div class="row">
@@ -13,7 +16,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><%= gossip.title %> by <%= gossip.user.first_name %> <%= gossip.user.last_name %> </h5>
                         <p class="card-text"><%= gossip.content %></p>
-                        <%= link_to "Read More", dynamic_pages_gossip_path(:id => gossip.id), class: "btn btn-secondary" %>
+                        <%= link_to "Read More", gossip_path(:id => gossip.id), class: "btn btn-secondary" %>
                     </div>
                 </div>
             </div>

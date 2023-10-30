@@ -6,10 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css', media: 'all' %>
-
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    
   </head>
 
   <body>
@@ -21,16 +18,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <%= link_to "Home", {controller: "static_pages", action: "home"}, class: "nav-link" %>
+          <%= link_to "Home", home_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Add a Gossip", {controller: "static_pages", action: "home"},class: "nav-link"%>
+          <%= link_to "Team", team_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Team", {controller: "static_pages", action: "team"}, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Contact", {controller: "static_pages", action: "contact"}, class: "nav-link" %>
+          <%= link_to "Contact", contact_path, class: "nav-link" %>
         </li>
       </ul>
     </div>
