@@ -6,19 +6,26 @@
             <h1 class="display-5 fw-bold">Welcome to The Gossip Project</h1>
             <p class="col-md-8 fs-4">Here you can find all the latest gossip from around town.</p>
         </div>
-    </div>
+        </div>
 
-    <div class="row">
-        <% @gossips.each do |gossip| %>
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title"><%= gossip.title %> by <%= gossip.user.first_name %> <%= gossip.user.last_name %> </h5>
-                        <p class="card-text"><%= gossip.content %></p>
-                        <%= link_to "Read More", gossip_path(:id => gossip.id), class: "btn btn-secondary" %>
+        <div class="row">
+            <% @gossips.each do |gossip| %>
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= gossip.title %> by <%= gossip.user.first_name %> <%= gossip.user.last_name %> </h5>
+                            <p class="card-text"><%= gossip.content %></p>
+                            <%= link_to "Read More", gossip_path(:id => gossip.id), class: "btn btn-secondary" %>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <% end %>
-    </div>
+            <% end %>
+        </div>    
+        <div class="container-fluid opacity-75 p-2 m-1 bg-dark text-warning fw-bold rounded px-5">
+            <h1 class="display-5 fw-bold">Welcome to The Gossip Project</h1>
+            <p class="col-md-8 fs-4">Here you can find all the latest gossip from around town.</p>
+            <%= link_to "Register", new_user_path, class: "btn btn-primary" %>
+            <%= link_to "Log In", new_session_path, class: "btn btn-secondary" %>
+        </div>
 </div>
+

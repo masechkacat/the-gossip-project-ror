@@ -21,6 +21,7 @@ Comment.destroy_all
       email: Faker::Internet.unique.email,
       description: Faker::Lorem.paragraph,
       age: Faker::Number.between(from: 18, to: 80),
+      password: Faker::Internet.password(min_length: 6),
       city: City.all.sample 
     )
   end

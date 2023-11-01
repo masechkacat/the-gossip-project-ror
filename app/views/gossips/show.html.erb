@@ -12,26 +12,34 @@
       <div class="card-body">
         <blockquote class="blockquote mb-0">
           <p><%= @gossip.content %></p>
-          <footer class="blockquote-footer"> <cite><%= @gossip.user.first_name %> <%= @gossip.user.last_name %></cite></footer>
-        </blockquote>
+          <footer class="blockquote-footer">
+            <% if current_user %>
+              <cite><%= link_to "#{h(@gossip.user.first_name)}
+              #{h(@gossip.user.last_name)}".html_safe, user_path(@gossip.user) %></cite>
+            <% else %>
+                <cite>To view the author, comments et likes, please <%= link_to 'register', new_user_path %> or <%= link_to 'log in', new_session_path %>.</cite>
+            <% end %>
+          </footer>
+          </blockquote>
       </div>
     </div>
-    <div class="col-md-8">
-      <label>
-      <input type="checkbox" name="like" value="1">
-      Like
-      </label>
-      <p><%= @gossip.likes.count %> likes</p>
-    </div>
+    <% if current_user %>
+      <div class="col-md-8">
+        <label>
+        <input type="checkbox" name="like" value="1">
+        Like
+        </label>
+        <p><%= @gossip.likes.count %> likes</p>
+      </div>
 
-    <div class="col-md-8">
-      <h3>Comments</h3>
-      <ul class="list-group list-group-flush">
-        <% @gossip.comments.each do |comment| %>
-          <li class="list-group-item"><%= comment.content %></li>
-        <% end %>
-      </ul>
-    </div>
+      <div class="col-md-8">
+        <h3>Comments</h3>
+        <ul class="list-group list-group-flush">
+          <% @gossip.comments.each do |comment| %>
+            <li class="list-group-item"><%= comment.content %></li>
+          <% end %>
+        </ul>
+      </div>
   </div>
   <div class="col-md-6 m-4">
       <form>
@@ -42,6 +50,8 @@
             <button type="submit m-2" class="btn btn-primary">Submit</button>
           </form>
     </div>
+    <% end %>
+
     </div>
   </div>    
 
