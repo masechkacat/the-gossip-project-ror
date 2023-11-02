@@ -1,0 +1,14 @@
+<div class="container">
+    <h1>Edit gossip</h1>
+    <%= form_with(model: @gossip, local: true) do |form| %>
+        <div class="form-group">
+            <%= form.label :title %>
+            <%= form.text_field :title, class: "form-control", value: @gossip.title %>
+        </div>
+        <div class="form-group">
+            <%= form.label :content %>
+            <%= form.text_area :content, class: "form-control", value: @gossip.content %>
+        </div>
+        <%= form.submit "Update", class: "btn btn-warning" %>
+    <% end %>
+</div>

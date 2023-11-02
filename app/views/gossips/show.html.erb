@@ -6,28 +6,41 @@
 <div class="container mt-4">
   <div class="row">
     <div class="card">
-      <div class="card-header">
+      <div class="card-header d-flex justify-content-between">
         <h2><%= @gossip.title %></h2>
+        <div class="d-flex align-items-center" style="gap: 4%;">
+        <% if current_user == @gossip.user %>
+          <%= link_to "Edit", edit_gossip_path(@gossip), class: "btn btn-warning" %>
+          <%= form_tag gossip_path(@gossip), method: :delete do %>
+            <%= submit_tag "Delete", class: "btn btn-secondary" %>
+          <% end %>
+        <% end %>
+        </div>
       </div>
       <div class="card-body">
         <blockquote class="blockquote mb-0">
           <p><%= @gossip.content %></p>
+          
           <footer class="blockquote-footer">
             <% if current_user %>
               <cite><%= link_to "#{h(@gossip.user.first_name)}
               #{h(@gossip.user.last_name)}".html_safe, user_path(@gossip.user) %></cite>
             <% else %>
-                <cite>To view the author, comments et likes, please <%= link_to 'register', new_user_path %> or <%= link_to 'log in', new_session_path %>.</cite>
+              <cite>To view the author, comments et likes, please <%= link_to 'register', new_user_path %> or <%= link_to 'log in', new_session_path %>.</cite>
             <% end %>
+            
           </footer>
-          </blockquote>
+        </blockquote>
+        
       </div>
+      
     </div>
+    
     <% if current_user %>
       <div class="col-md-8">
         <label>
-        <input type="checkbox" name="like" value="1">
-        Like
+          <input type="checkbox" name="like" value="1">
+          Like
         </label>
         <p><%= @gossip.likes.count %> likes</p>
       </div>
@@ -36,19 +49,26 @@
         <h3>Comments</h3>
         <ul class="list-group list-group-flush">
           <% @gossip.comments.each do |comment| %>
-            <li class="list-group-item"><%= comment.content %></li>
+            <li class="list-group-item d-flex" style="gap: 2%;">
+            <%= image_tag "avatar-#{rand(1..6)}.svg", class: "social__picture", width: "35", height: "35" %>
+            <blockquote class="blockquote mb-0">
+          <p><%= comment.content %></p>
+          <footer class="blockquote-footer">
+              <cite><%= comment.user.last_name%> <%= comment.user.first_name%></cite>
+          </footer>
+        </blockquote>
+        </li>
           <% end %>
         </ul>
       </div>
-  </div>
-  <div class="col-md-6 m-4">
-  <%= form_with(model: [ @gossip, @gossip.comments.build ], local: true, url: gossip_comments_path(@gossip)) do |form| %>
-    <%= form.text_area :content, placeholder: "Add a comment..." %>
-    <%= form.submit "Create Comment" %>
-  <% end %>  
+    </div>
+    <div class="col-md-6 m-4">
+      <%= form_with(model: [ @gossip, @gossip.comments.build ], local: true, url: gossip_comments_path(@gossip), class: "form-group") do |form| %>
+        <%= form.text_area :content, placeholder: "Add a comment...", class: "form-control mb-2" %>
+        <%= form.submit "Create Comment", class: "btn btn-warning" %>
+      <% end %>  
     </div>
     <% end %>
     <%= yield :notice %>
-    </div>
-  </div>    
-
+  </div>
+</div>

@@ -1,15 +1,41 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card border-rounded" style="width: 18rem;">
+            <div class="card border-rounded">
+                <div class="card-header">
+                    <h3 class="card-title"><%= @user.first_name %> <%= @user.last_name %></h3>
+                </div>
                 <div class="card-body">
-                    <h5 class="card-title"><%= @user.first_name %> <%= @user.last_name %></h5>
                     <p class="card-text"><%= @user.description %></p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><%= @user.email %></li>
-                    <li class="list-group-item"><%= @user.age %></li>
-                    <li class="list-group-item"><%= @user.city.name %></li>
+                    <li class="list-group-item"><strong>Email:</strong> <%= @user.email %></li>
+                    <li class="list-group-item"><strong>Age:</strong> <%= @user.age %></li>
+                    <li class="list-group-item"><strong>City:</strong> <%= @user.city.name %></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card border-rounded">
+                <div class="card-header">
+                    <h3 class="card-title">Gossips</h3>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <% @user.gossips.each do |gossip| %>
+                        <li class="list-group-item"><%= gossip.title %></li>
+                    <% end %>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card border-rounded">
+                <div class="card-header">
+                    <h3 class="card-title">Comments</h3>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <% @user.comments.each do |comment| %>
+                        <li class="list-group-item"><%= comment.content %></li>
+                    <% end %>
                 </ul>
             </div>
         </div>
