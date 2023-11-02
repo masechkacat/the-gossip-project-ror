@@ -42,16 +42,13 @@
       </div>
   </div>
   <div class="col-md-6 m-4">
-      <form>
-        <div class="form-group m-2">
-              <label for="comment">Your comment:</label>
-              <textarea class="form-control" rows="3" id="comment"></textarea>
-            </div>
-            <button type="submit m-2" class="btn btn-primary">Submit</button>
-          </form>
+  <%= form_with(model: [ @gossip, @gossip.comments.build ], local: true, url: gossip_comments_path(@gossip)) do |form| %>
+    <%= form.text_area :content, placeholder: "Add a comment..." %>
+    <%= form.submit "Create Comment" %>
+  <% end %>  
     </div>
     <% end %>
-
+    <%= yield :notice %>
     </div>
   </div>    
 

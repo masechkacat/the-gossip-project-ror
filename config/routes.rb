@@ -7,5 +7,8 @@
     resources :gossips
     resources :users
     resources :sessions
+    resources :gossips do
+      resources :comments
+    end
 
   end

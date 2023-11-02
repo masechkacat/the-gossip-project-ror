@@ -1,13 +1,18 @@
 <% content_for :title, "Home" %>
+<div class="hero" style="background-image: url(<%= asset_path('dgd.jpg') %>); height: 400px; width: 100%; position: absolute; top: 0;"></div>
+<div class="container" style="padding-top: 100px; position: relative;">
+<h1 class="display-5 fw-bold text-white">Welcome to The Gossip Project</h1>
+            <p class="col-md-8 fs-4" style="background-color: rgba(0, 0, 0, 0.5); color: bisque;">Here you can find all the latest gossip from around town.</p>
+            <% if current_user %>
+              <%= link_to "Create New Gossip", new_gossip_path, class: "btn btn-warning" %>
+            <% else %>
+              <%= link_to "Register", new_user_path, class: "btn btn-warning" %>
+              <%= link_to "Log In", new_session_path, class: "btn btn-secondary" %>
+            <% end %>
+</div>
 
-<div class="container">
-    <div class="p-5 mb-4 mt-4 bg-body-tertiary rounded-3" style="background-image: url(<%= asset_path('dgd.jpg') %>); background-size: cover;">
-        <div class="container-fluid opacity-75 p-2 m-1 bg-dark text-warning fw-bold rounded px-5">
-            <h1 class="display-5 fw-bold">Welcome to The Gossip Project</h1>
-            <p class="col-md-8 fs-4">Here you can find all the latest gossip from around town.</p>
-        </div>
-        </div>
 
+<div class="container" style="padding-top: 100px;">
         <div class="row">
             <% @gossips.each do |gossip| %>
                 <div class="col-md-4">
@@ -21,11 +26,5 @@
                 </div>
             <% end %>
         </div>    
-        <div class="container-fluid opacity-75 p-2 m-1 bg-dark text-warning fw-bold rounded px-5">
-            <h1 class="display-5 fw-bold">Welcome to The Gossip Project</h1>
-            <p class="col-md-8 fs-4">Here you can find all the latest gossip from around town.</p>
-            <%= link_to "Register", new_user_path, class: "btn btn-primary" %>
-            <%= link_to "Log In", new_session_path, class: "btn btn-secondary" %>
-        </div>
 </div>
 

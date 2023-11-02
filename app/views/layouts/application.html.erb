@@ -11,36 +11,44 @@
   </head>
 
   <body data-turbo="false">
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Переключатель навигации">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <%= link_to "Home", gossips_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Team", team_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Contact", contact_path, class: "nav-link" %>
-        </li>
-      </ul>
-      <div class="navbar-nav ms-auto">
-        <% if current_user %>
-          <%= form_tag session_path(current_user), method: :delete do %>
-            <%= submit_tag "Logout", class: "nav-link" %>
-          <% end %>
-        <% else %>
-          <%= link_to "Login", new_session_path, class: "nav-link" %>
-        <% end %>
+    <nav class="navbar navbar-expand-xl navbar-dark" style="z-index: 3; background-color: rgba(0, 0, 0, 0.5); ">
+      <div class="container-fluid">
+        <a href="/" class="navbar-brand">The Gossip Project</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <%= link_to "Home", gossips_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Team", team_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Contact", contact_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <% if current_user %>
+                <%= link_to "Profile", user_path(current_user), class: "nav-link" %>
+              <% else %>
+                <%= link_to "Register", new_user_path, class: "nav-link" %>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <% if current_user %>
+                <%= form_tag session_path(current_user), method: :delete do %>
+                  <%= submit_tag "Logout", class: "btn btn-outline-light" %>
+                <% end %>
+              <% else %>
+                <%= link_to "Login", new_session_path, class: "btn btn-outline-light" %>
+              <% end %>
+            </li>
+          </ul>
+        </div>
       </div>
-  </div>
-    </div>
-  </div>
-</nav>
+    </nav>
     <%= yield %>
   </body>
-</html>
+  </html>
+  
